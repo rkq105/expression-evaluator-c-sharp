@@ -26,6 +26,7 @@ using org.matheval;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Threading;
 
 namespace UnitTest
 {
@@ -114,7 +115,7 @@ namespace UnitTest
 
             Expression expr2 = new Expression("21%20");
             Assert.AreEqual(1M, expr2.Eval<decimal>());
-        }
+		}
 
         [TestMethod]
         public void Math_Operator_Ge_Test()
@@ -616,7 +617,19 @@ namespace UnitTest
             expr1.SetFomular("CEILING(4.5, 1)");
             Assert.AreEqual(5M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("FLOOR(3.7)");
+			expr1.SetFomular("ROUNDUP(2.1)");
+			Assert.AreEqual(3M, expr1.Eval<decimal>());
+
+			expr1.SetFomular("ROUNDUP(4.5, 1)");
+			Assert.AreEqual(5M, expr1.Eval<decimal>());
+
+			expr1.SetFomular("ROUNDUP(-2.5, -2)");
+			Assert.AreEqual(-4M, expr1.Eval<decimal>());
+
+			expr1.SetFomular("ROUNDUP(4.5, 1)");
+			Assert.AreEqual(5M, expr1.Eval<decimal>());
+
+			expr1.SetFomular("FLOOR(3.7)");
             Assert.AreEqual(3M, expr1.Eval<decimal>());
 
             expr1.SetFomular("FLOOR(3.7,2)");
@@ -625,7 +638,16 @@ namespace UnitTest
             expr1.SetFomular("FLOOR(-2.5,-2)");
             Assert.AreEqual(-2M, expr1.Eval<decimal>());
 
-            expr1.SetFomular("ROUND(20.085537,2)");
+			expr1.SetFomular("ROUNDDOWN(3.7)");
+			Assert.AreEqual(3M, expr1.Eval<decimal>());
+
+			expr1.SetFomular("ROUNDDOWN(3.7,2)");
+			Assert.AreEqual(2M, expr1.Eval<decimal>());
+
+			expr1.SetFomular("ROUNDDOWN(-2.5,-2)");
+			Assert.AreEqual(-2M, expr1.Eval<decimal>());
+
+			expr1.SetFomular("ROUND(20.085537,2)");
             Assert.AreEqual(20.09M, expr1.Eval<decimal>());
 
             /* expr1.SetFomular("ROUND(20126.08,-1)");
@@ -635,7 +657,17 @@ namespace UnitTest
             Assert.AreEqual(-8M, expr1.Eval<decimal>());
         }
 
-        [TestMethod]
+		[TestMethod]
+		public void Math_EMod_Test()
+		{
+			Expression expr1 = new Expression("EMOD(2,3)");
+			Assert.AreEqual(2M, expr1.Eval<decimal>());
+
+            Expression expr2 = new Expression("EMOD(21,20)");
+			Assert.AreEqual(1M, expr2.Eval<decimal>());
+		}
+
+		[TestMethod]
         public void Math_Combination_Test()
         {
             var randomAngle = Math.PI / 6.03d;

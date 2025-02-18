@@ -410,10 +410,25 @@ namespace org.matheval.Common
         /// </summary>
         public const string Const_Ceiling = "ceiling";
 
-        /// <summary>
-        /// Function And
-        /// </summary>
-        public const string Const_And = "and";
+		/// <summary>
+		/// Function RoundUp
+		/// </summary>
+		public const string Const_RoundUp = "RoundUp";
+
+		/// <summary>
+		/// Function RoundDown
+		/// </summary>
+		public const string Const_RoundDown = "RoundDown";
+
+		/// <summary>
+		/// Function Emod
+		/// </summary>
+		public const string Const_Emod = "EMod";
+
+		/// <summary>
+		/// Function And
+		/// </summary>
+		public const string Const_And = "and";
 
         /// <summary>
         /// Function asin
@@ -550,10 +565,15 @@ namespace org.matheval.Common
         /// </summary>
         public const string Const_Floor = "floor";
 
-        /// <summary>
-        /// Function Ln
-        /// </summary>
-        public const string Const_Ln = "ln";
+		/// <summary>
+		/// Function Floor
+		/// </summary>
+		public const string Const_Rounddown = "rounddown";
+
+		/// <summary>
+		/// Function Ln
+		/// </summary>
+		public const string Const_Ln = "ln";
 
         /// <summary>
         /// Function Log10
@@ -565,10 +585,15 @@ namespace org.matheval.Common
         /// </summary>
         public const string Const_Mod = "mod";
 
-        /// <summary>
-        /// Function power
-        /// </summary>
-        public const string Const_Power = "power";
+		/// <summary>
+		/// Function Emod
+		/// </summary>
+		public const string Const_EMod = "emod";
+
+		/// <summary>
+		/// Function power
+		/// </summary>
+		public const string Const_Power = "power";
 
         /// <summary>
         /// Function Random
@@ -585,11 +610,16 @@ namespace org.matheval.Common
         /// </summary>
         public const string Const_Round = "round";
 
+		/// <summary>
+		/// Function RoundUp
+		/// </summary>
+		public const string Const_Roundup = "roundup";
 
-        /// <summary>
-        /// Function time
-        /// </summary>
-        public const string Const_Time = "time";
+
+		/// <summary>
+		/// Function time
+		/// </summary>
+		public const string Const_Time = "time";
 
         /// <summary>
         /// Function Exp
@@ -726,12 +756,12 @@ namespace org.matheval.Common
             return Math.Round(Convert.ToDecimal(value, dc.WorkingCulture), dc.Scale, dc.Rd);
         }
 
-        /// <summary>
-        /// Check object is number instance
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static bool IsNumber(object value)
+		/// <summary>
+		/// Check object is number instance
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool IsNumber(object value)
         {
             return value is sbyte
                     || value is byte
