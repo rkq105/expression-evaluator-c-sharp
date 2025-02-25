@@ -78,9 +78,11 @@ namespace org.matheval.Operators.Binop
             {
                 return (bool)left == true && (bool)right == false;
             }
-            else if (left is string && right is string)
-            {
-                return left.ToString().CompareTo(right.ToString()) >= 0;
+			else if ((left is string && right is string) ||
+				(Common.Afe_Common.IsNumber(left) && right is string) ||
+				(left is string && Common.Afe_Common.IsNumber(right)))
+			{
+				return left.ToString().CompareTo(right.ToString()) >= 0;
             }
             else if (left is TimeSpan && right is TimeSpan)
             {

@@ -72,9 +72,11 @@ namespace org.matheval.Operators.Binop
             {
                 return (bool)left == (bool)right;
             }
-            else if (left is string && right is string)
-            {
-                return left.Equals(right);
+			else if ((left is string && right is string) ||
+				(Common.Afe_Common.IsNumber(left) && right is string) ||
+				(left is string && Common.Afe_Common.IsNumber(right)))
+			{
+				return left.Equals(right);
             }
             throw new Exception(string.Format(MSG_WRONG_OP_PARAM_EX, new string[] { "Comparison", "Number, Boolean, Datetime" }));
         }

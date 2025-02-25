@@ -63,9 +63,11 @@ namespace org.matheval.Operators.Binop
                 decimal rightDecimal = Afe_Common.ToDecimal(right, dc.WorkingCulture);
                 return Afe_Common.Round(leftDecimal, dc) < Afe_Common.Round(rightDecimal, dc);
             }
-            else if (left is string && right is string)
-            {
-                return left.ToString().CompareTo(right.ToString()) < 0;
+			else if ((left is string && right is string) ||
+				(Common.Afe_Common.IsNumber(left) && right is string) ||
+				(left is string && Common.Afe_Common.IsNumber(right)))
+			{
+				return left.ToString().CompareTo(right.ToString()) < 0;
             }
 
             throw new Exception(string.Format(MSG_WRONG_OP_PARAM_EX, new string[] { "Comparison", "Integer, Boolean, Datetime" }));
